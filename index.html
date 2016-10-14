@@ -20,10 +20,14 @@
         </ul>         
     </div>   
     <div id="map"></div>
+    <div class="api-error">
+        <h2>
+            Failed to get the place details from Google Maps
+        </h2>
+    </div>
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/neighbours.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" async defer></script>
     <script>
         $('a').click(function(){
             $('a').removeClass('li-active');
@@ -41,7 +45,11 @@
         main.addEventListener('click', function() {
             drawer.classList.remove('open');
         });
+        $('.api-error').hide();
+        
         
     </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" async defer></script>
+    
   </body>
 </html>

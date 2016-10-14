@@ -64,7 +64,19 @@ input{
 .li-active{
   color:#0066cc;
 }
-
+.api-error{
+  position: fixed;
+  top:40%;
+  left:40%;
+  margin: auto;
+  width: 500px;
+  height: 100px;
+  padding: auto;
+  color: red;
+  background: #fff;
+  box-shadow: 0 .3125em 1.25em 0 rgba(46,61,73,.12);
+  text-align: center;
+}
 @media screen and (max-width:900px){
   #map{
     width: 100%;
