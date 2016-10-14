@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Place searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/knockout.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <img class="option-icon" src="img/reorder-option.svg" class="header_item">
+        <h2 class="header_item">Hyderabad Top Locations To Visit</h2>
+    </div>
+    <div class="navbar">
+        <input type="text" data-bind="value: query, valueUpdate: 'keyup'" placeholder="search">
+        <ul data-bind="foreach: searchResults">
+            <li><a href="#" data-bind="text: name, click: viewPlace"></a></li>
+        </ul>         
+    </div>   
+    <div id="map"></div>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/neighbours.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" async defer></script>
+    <script>
+        $('a').click(function(){
+            $('a').removeClass('li-active');
+            $(this).addClass('li-active');
+        });
+        
+        var menu = document.querySelector('.option-icon');
+        var main = document.querySelector('#map');
+        var drawer = document.querySelector('.navbar');
+
+        menu.addEventListener('click', function(e) {
+            drawer.classList.toggle('open');
+            e.stopPropagation();
+        });
+        main.addEventListener('click', function() {
+            drawer.classList.remove('open');
+        });
+        
+    </script>
+  </body>
+</html>
