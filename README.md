@@ -1,5 +1,5 @@
 ## Neighbourhood Map project for Udacity Nanodegree Program
-------------------------------------------------------------
+
 ## Libraries used
 - [knockoutjs](http://knockoutjs.com/)
 ------------------------------------------------------------
