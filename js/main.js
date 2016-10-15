@@ -89,6 +89,9 @@ var viewModel = function(){
                 map: map,
                 position: place.geometry.location
             });
+            if(marker){
+            self.markersArray().push(marker);        
+            }
             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                                   place.formatted_address + '</div>');
             infowindow.open(map, marker);
