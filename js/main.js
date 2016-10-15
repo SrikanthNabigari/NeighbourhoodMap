@@ -1,10 +1,12 @@
-// when google maps api failed to response
+// when google maps api gets failed
 var googleError = function(){
-    $('.api-error').show();
+    viewModel.self.apiError = true;
 };
+
 
 var map ;
 var infowindow ;
+var marker;
 initMap = function(){
     var pyrmont = {lat: 17.3850, lng: 78.4867};
     // displays the requested map content in map div 
@@ -14,57 +16,87 @@ initMap = function(){
     });
     // displays location information in window when marker clicked
     infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
-    // gets the detailed place information by place_id stored in model
-    for(var i = 0; i < places.length; i++){
-            service.getDetails({
-                placeId:  places[i].place_id
-            }, function(place, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    var marker = new google.maps.Marker({
-                    map: map,
-                    position: place.geometry.location
-                });
-                google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                                      place.formatted_address + '</div>');
-                infowindow.open(map, this);
-                });
-            }
-        });
-        };       
-
+              
+    for(var i=0; i<places.length; i++){
+        AddMarker(places[i]);
+    };
+  
 };
+// Adds the marker by getting place location details
+var AddMarker = function(place){
+    removeMarkers();
+    var service = new google.maps.places.PlacesService(map);
+        service.getDetails({
+            placeId:  place.place_id
+        },function(place, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+            }
+        if(marker){
+            self.markersArray().push(marker);        
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                                       place.formatted_address + '</div>');
+                infowindow.open(map, this);
+            }); 
+        }   
+    });
+};
+// removes all the markers
+var removeMarkers = function(){
+    for(var i=0; i<self.markersArray().length; i++ ){
+        self.markersArray()[i].setMap(null);
+    }
+};
+// shows all the markers    
+var showMarkers = function(){
+    for(var i=0; i<self.markersArray().length; i++ ){
+        self.markersArray()[i].setMap(map);
+    }
+};         
 
 var viewModel = function(){
     var self = this;
-    
+    this.markersArray = ko.observableArray([]);    
     this.query = ko.observable('');
     // filters the places array when searched in a query input
     this.searchResults = ko.computed(function() {
         q = self.query();
-        return places.filter(function(i) {
-            return i.name.toLowerCase().indexOf(q) >= 0;
-        });
+        if(!q){
+            showMarkers();
+            return places;
+        }
+        else{
+            return ko.utils.arrayFilter(places, function(place) {
+                if(place.name.toLowerCase().indexOf(q) >= 0) {
+                    AddMarker(place);
+                    return place;
+                }    
+            });
+        }
     });
+
     // when name of the location clicked displays infowindow
     this.viewPlace = function(clickedName){
         var service = new google.maps.places.PlacesService(map);
         service.getDetails({
             placeId:  clickedName.place_id
         },function(place){
-            self.marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location
             });
             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                                   place.formatted_address + '</div>');
-            infowindow.open(map,self.marker);
+            infowindow.open(map, marker);
         });
         
     };
       
         
-};
+};    
 
 ko.applyBindings(viewModel);
