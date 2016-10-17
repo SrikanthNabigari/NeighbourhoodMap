@@ -41,7 +41,6 @@
     <!-- /ko -->     
     <script type="text/javascript" src="js/model.js"></script>
     <script src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
     <script>
         $('.description').hide();
         $('.api-error').hide();
@@ -59,12 +58,10 @@
         $('#map').click(function(){
             $('.navbar').removeClass('open');
             self.des_name(null);
-        });
-        
-
-       
+        });       
     </script>
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" ></script>
+    <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
 
