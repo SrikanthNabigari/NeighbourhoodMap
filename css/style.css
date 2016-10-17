@@ -12,8 +12,10 @@ header{
   height: 50px; 
   color: #1c262f;
 }
-.option-icon img{
+.option-icon{
   display: none;
+}
+.option-icon img{
   width: 35px;
   height: 18px;
 }
