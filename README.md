@@ -5,6 +5,7 @@
 ------------------------------------------------------------
 ## Api's used
 - Google Maps Api
+-------------------------------------------------------------
 You can open this site in this url https://srikanthnabigari.github.io/NeighbourhoodMap/
                 (or)
 Download the repository and open index.html to run locally
