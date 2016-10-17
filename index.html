@@ -13,18 +13,32 @@
         <img class="option-icon" src="img/reorder-option.svg" class="header_item">
         <h2 class="header_item">Hyderabad Top Locations To Visit</h2>
     </div>
+   
     <div class="navbar">
         <input type="text" data-bind="value: query, valueUpdate: 'keyup'" placeholder="search">
         <ul data-bind="foreach: searchResults">
-            <li><a href="#" data-bind="text: name, click: viewPlace"></a></li>
-        </ul>         
+            <li><a href="#" class="location_name" data-bind="text: name, click: viewPlace"></a></li>
+        </ul> 
+                 
     </div>   
     <div id="map"></div>
+    <!-- ko if: des_name -->  
+    <div class="description" >
+        <img data-bind="attr: {src: location_image}"/><br/>
+        <h3 data-bind="text: des_name"></h3>
+        <hr>
+        <!-- ko if: rating -->  
+        <p>Rating: <span data-bind="text: rating"></span></p>
+        <!-- /ko -->
+        <h3>Review</h3>
+        <p data-bind="text: review"></p>
+    </div> 
+    <!-- /ko -->
+    <!-- ko if: apiError -->  
         <div class="api-error">
-            <h2>
-                Failed to get the place details from Google Maps
-            </h2>
+            <h2 class="error_message" data-bind="text:error_message"></h2>
         </div>
+    <!-- /ko -->     
     <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/model.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
@@ -33,23 +47,21 @@
             $('a').removeClass('li-active');
             $(this).addClass('li-active');
         });
+        $('.option-icon').click(function(){
+            $('.navbar').addClass('open');
+            $('.navbar').toggle();
+        });
+        $('.location_name').click(function(){
+            $('.navbar').removeClass('open');
+        });
+        $('#map').click(function(){
+            $('.navbar').removeClass('open');
+        });
         
-        var menu = document.querySelector('.option-icon');
-        var main = document.querySelector('#map');
-        var drawer = document.querySelector('.navbar');
 
-        menu.addEventListener('click', function(e) {
-            drawer.classList.toggle('open');
-            e.stopPropagation();
-        });
-        main.addEventListener('click', function() {
-            drawer.classList.remove('open');
-        });
-        $('.api-error').hide();
-        var googleError = function(){
-            $('.api-error').show();
-        };
+       
     </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" async defer></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" ></script>
   </body>
 </html>
+

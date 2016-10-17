@@ -77,6 +77,24 @@ input{
   box-shadow: 0 .3125em 1.25em 0 rgba(46,61,73,.12);
   text-align: center;
 }
+.description{
+  width: 320px;
+  height: 100%;
+  position: absolute;
+  top:58px;
+  right: 0;
+  margin-right: 0;
+  background: #00ff00;
+  color: #fff;
+  
+  
+}
+.description h3,p{
+  margin-left: 10px;
+}
+.description span{
+  font-weight: bold;
+}
 @media screen and (max-width:900px){
   #map{
     width: 100%;
@@ -104,4 +122,9 @@ input{
     display: inline-block;
     }
 
+}
+@media screen and (max-width:600px){
+  .description{
+    display: none;
+  }
 }
