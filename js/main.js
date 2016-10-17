@@ -45,6 +45,7 @@ var AddMarker = function(place){
                 infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                 place.formatted_address + '</div>');
                 infowindow.open(map, this);
+                self.des_name(null);
             });
         } 
     });
@@ -71,6 +72,7 @@ var open_infowindow = function(place,marker){
                 infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                 place.formatted_address + '</div>');
                 infowindow.open(map, this);
+                self.des_name(null);
             });
             
 };   
