@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="header">
-        <img class="option-icon" src="img/reorder-option.svg" class="header_item">
+        <a href="#" class="option-icon"><img src="img/reorder-option.svg" class="header_item"></a>
         <h2 class="header_item">Hyderabad Top Locations To Visit</h2>
     </div>
    
@@ -47,8 +47,8 @@
             $(this).addClass('li-active');
         });
         $('.option-icon').click(function(){
-            $('.navbar').toggle();
             $('.navbar').addClass('open');
+            $('.navbar').toggle();
         });
         $('.location_name').click(function(){
             $('.navbar').removeClass('open');
