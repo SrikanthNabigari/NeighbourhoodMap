@@ -4,7 +4,8 @@
 - [knockoutjs](http://knockoutjs.com/)
 ------------------------------------------------------------
 ## Api's used
-- Google Maps Api
+- Google Maps
+- Foursquare 
 -------------------------------------------------------------
 You can open this site in this url https://srikanthnabigari.github.io/NeighbourhoodMap/
                 (or)
