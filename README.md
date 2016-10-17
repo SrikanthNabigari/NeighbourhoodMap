@@ -1,11 +1,12 @@
 ## Neighbourhood Map project for Udacity Nanodegree Program
 
 ## Libraries used
-- [knockoutjs](http://knockoutjs.com/)
+- [knockoutjs](http://knockoutjs.com/).
 ------------------------------------------------------------
 ## Api's used
-- Google Maps
-- Foursquare 
+- Google Maps.
+- Foursquare.
+
 -------------------------------------------------------------
 You can open this site in this url https://srikanthnabigari.github.io/NeighbourhoodMap/
                 (or)
