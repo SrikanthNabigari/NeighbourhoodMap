@@ -17,7 +17,7 @@
     <div class="navbar">
         <input type="text" data-bind="value: query, valueUpdate: 'keyup'" placeholder="search">
         <ul data-bind="foreach: searchResults">
-            <li><a href="#" class="location_name" data-bind="text: name, click: viewPlace"></a></li>
+            <li class="location_name"><a href="#" class="location_name" data-bind="text: name, click: viewPlace"></a></li>
         </ul> 
                  
     </div>   
@@ -41,6 +41,8 @@
     <!-- /ko -->     
     <script type="text/javascript" src="js/model.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" ></script>
+    <script type="text/javascript" src="js/main.js"></script>
     <script>
         $('a').click(function(){
             $('a').removeClass('li-active');
@@ -51,6 +53,7 @@
             $('.navbar').toggle();
         });
         $('.location_name').click(function(){
+            $('.navbar').hide();
             $('.navbar').removeClass('open');
         });
         $('#map').click(function(){
@@ -58,8 +61,6 @@
             self.des_name(null);
         });       
     </script>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" ></script>
-    <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
 
