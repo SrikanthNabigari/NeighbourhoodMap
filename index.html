@@ -48,14 +48,15 @@
             $(this).addClass('li-active');
         });
         $('.option-icon').click(function(){
-            $('.navbar').addClass('open');
             $('.navbar').toggle();
+            $('.navbar').addClass('open');
         });
         $('.location_name').click(function(){
             $('.navbar').removeClass('open');
         });
         $('#map').click(function(){
             $('.navbar').removeClass('open');
+            self.des_name(null);
         });
         
 
