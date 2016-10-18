@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script type="text/javascript" src="js/knockout.js"></script>
 </head>
 <body>
     <div class="header">
@@ -16,7 +15,7 @@
     </div>
    
     <div class="navbar">
-        <input type="text" class="search" data-bind="value: query, valueUpdate: 'keyup'" placeholder="search">
+        <input type="text" class="search" data-bind="textInput: query" placeholder="search">
         <ul data-bind="foreach: searchResults">
             <li class="location_name"><a href="#" class="location_name" data-bind="text: name, click: viewPlace"></a></li>
         </ul> 
@@ -41,8 +40,8 @@
         <div class="api-error">
             <h2 class="error_message" data-bind="text:error_message"></h2>
         </div>
-    <!-- /ko -->     
-    <script type="text/javascript" src="js/model.js"></script>
+    <!-- /ko -->  
+    <script src="js/knockout.js"></script>   
     <script src="js/jquery.min.js"></script>
     <script>
         $('.option-icon').click(function(){
@@ -52,7 +51,8 @@
             self.des_name(null);
         }
     </script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" async defer></script>
     <script>
         $('.location_name').click(function(){
