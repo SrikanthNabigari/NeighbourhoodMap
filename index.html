@@ -15,7 +15,7 @@
     </div>
    
     <div class="navbar">
-        <input type="text" data-bind="value: query, valueUpdate: 'keyup'" placeholder="search">
+        <input type="text" class="search" data-bind="value: query, valueUpdate: 'keyup'" placeholder="search">
         <ul data-bind="foreach: searchResults">
             <li class="location_name"><a href="#" class="location_name" data-bind="text: name, click: viewPlace"></a></li>
         </ul> 
@@ -61,7 +61,8 @@
          $('a').click(function(){
             $('a').removeClass('li-active');
             $(this).addClass('li-active');
-        });     
+        });
+        
     </script>
   </body>
 </html>

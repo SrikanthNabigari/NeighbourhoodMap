@@ -11,7 +11,7 @@ var FourSquareError = function(){
 
 var map ;
 this.marker;
-initMap = function(){
+var initMap = function(){
     var pyrmont = {lat: 17.3850, lng: 78.4867};
     // displays the requested map content in map div 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -26,11 +26,14 @@ initMap = function(){
     };
   
 };
+
+
 // Adds the marker by getting place location details
 var AddMarker = function(place){
         var myLatLng = { lat:place.location.lat,
                          lng:place.location.lng };
         self.marker = new google.maps.Marker({
+            map:map,
             animation: google.maps.Animation.DROP,
             position: myLatLng
         });
@@ -43,15 +46,20 @@ var AddMarker = function(place){
                 FoursquareData(place);
             });
         }
-        showMarkers();
-
 };
+
 // removes all the markers
 var removeMarkers = function(){
-    for(var i=0; i<self.markersArray().length; i++ ){
-        self.markersArray()[i][1].setMap(null);
+    for(var x=0; x<self.markersArray().length; x++ ){
+        self.markersArray()[x][1].setMap(null);
     }
 };
+// shows all the markers    
+var showMarkers = function(){
+    for(var i=0; i<self.markersArray().length; i++ ){
+        self.markersArray()[i][1].setMap(map);
+    }
+}; 
 
 // starts the marker bounce animation
 var startAnimation = function(myLatLng){
@@ -63,19 +71,13 @@ var startAnimation = function(myLatLng){
             });
         });
 }
+
 // stops the marker bounce animation
 var stopAnimation = function(){
     for(var i=0; i<self.markersArray().length; i++ ){
         self.markersArray()[i][1].setAnimation(null);
     }
 }
-// shows all the markers    
-var showMarkers = function(){
-    for(var i=0; i<self.markersArray().length; i++ ){
-        self.markersArray()[i][1].setMap(map);
-    }
-}; 
-
 
 // Gets the location data from Foursquare
 var FoursquareData = function(place){
@@ -122,9 +124,8 @@ var FoursquareData = function(place){
 
 var viewModel = function(){
     var self = this;
-    this.markersArray = ko.observableArray([]);    
-    console.log(self.markersArray());
-    this.query = ko.observable('');
+    this.markersArray = ko.observableArray([]);
+    this.query = ko.observable();
     this.location_image = ko.observable();
     this.des_name = ko.observable();
     this.rating = ko.observable();
