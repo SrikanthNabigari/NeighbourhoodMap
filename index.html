@@ -33,7 +33,6 @@
         <!-- /ko -->
         <h3>Review:</h3>
         <p data-bind="text: review"></p>
-         
     </div> 
     <!-- /ko -->
     <!-- ko if: apiError -->  
@@ -47,6 +46,7 @@
         $('.option-icon').click(function(){
             $('.navbar').toggleClass('open');
         });
+        
     </script>
     <script type="text/javascript" src="js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" async defer></script>
@@ -57,6 +57,7 @@
         $('#map').click(function(){
             self.des_name(null);
         });  
+          
          $('a').click(function(){
             $('a').removeClass('li-active');
             $(this).addClass('li-active');
