@@ -1,6 +1,6 @@
 // when google maps api gets failed
 var googleError = function(){
-    self.error_message('Failed to load GougleMaps Api');
+    self.error_message('Failed to load GoogleMaps Api');
     self.apiError(true);
 };
 // when google maps api gets failed
@@ -10,7 +10,6 @@ var FourSquareError = function(){
 };
 
 var map ;
-var infowindow ;
 this.marker;
 initMap = function(){
     var pyrmont = {lat: 17.3850, lng: 78.4867};
@@ -29,56 +28,57 @@ initMap = function(){
 };
 // Adds the marker by getting place location details
 var AddMarker = function(place){
-    var service = new google.maps.places.PlacesService(map);
-        service.getDetails({
-            placeId:  place.place_id
-        },function(place, status) {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location
-            });
-            }
+        var myLatLng = { lat:place.location.lat,
+                         lng:place.location.lng };
+        self.marker = new google.maps.Marker({
+            animation: google.maps.Animation.DROP,
+            position: myLatLng
+        });
         if(self.marker){
-            self.markersArray().push(self.marker);        
-            google.maps.event.addListener(self.marker, 'click', function() {
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                place.formatted_address + '</div>');
-                infowindow.open(map, this);
-                self.des_name(null);
+            self.markersArray().push([myLatLng,
+                                     self.marker]);                    
+            google.maps.event.addListener(marker, 'click', function() {
+                stopAnimation();
+                startAnimation(myLatLng)
+                FoursquareData(place);
             });
-        } 
-    });
-    
+        }
+        showMarkers();
+
 };
 // removes all the markers
 var removeMarkers = function(){
     for(var i=0; i<self.markersArray().length; i++ ){
-        self.markersArray()[i].setMap(null);
+        self.markersArray()[i][1].setMap(null);
     }
 };
+
+// starts the marker bounce animation
+var startAnimation = function(myLatLng){
+    ko.computed(function(){
+            ko.utils.arrayForEach(self.markersArray(), function(m){
+                if(myLatLng.lat === m[0].lat && myLatLng.lng ===m[0].lng){
+                    m[1].setAnimation(google.maps.Animation.BOUNCE);
+                }
+            });
+        });
+}
+// stops the marker bounce animation
+var stopAnimation = function(){
+    for(var i=0; i<self.markersArray().length; i++ ){
+        self.markersArray()[i][1].setAnimation(null);
+    }
+}
 // shows all the markers    
 var showMarkers = function(){
     for(var i=0; i<self.markersArray().length; i++ ){
-        self.markersArray()[i].setMap(map);
+        self.markersArray()[i][1].setMap(map);
     }
 }; 
-var open_infowindow = function(place,marker){
-    self.markersArray().push(marker); 
-            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                place.formatted_address + '</div>');
-                infowindow.open(map, marker);
-    google.maps.event.addListener(self.marker, 'click', function() {
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                place.formatted_address + '</div>');
-                infowindow.open(map, this);
-                self.des_name(null);
-            });
-            
-};   
+
 
 // Gets the location data from Foursquare
-var locationData = function(place){
+var FoursquareData = function(place){
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; 
@@ -123,6 +123,7 @@ var locationData = function(place){
 var viewModel = function(){
     var self = this;
     this.markersArray = ko.observableArray([]);    
+    console.log(self.markersArray());
     this.query = ko.observable('');
     this.location_image = ko.observable();
     this.des_name = ko.observable();
@@ -149,21 +150,16 @@ var viewModel = function(){
     });
 
     // when name of the location clicked displays infowindow
-    this.viewPlace = function(clickedName){
-        var service = new google.maps.places.PlacesService(map);
-        locationData(clickedName);
-        service.getDetails({
-            placeId:  clickedName.place_id
-        },function(place){
-            self.marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location
-            });
-            open_infowindow(place,self.marker);
-            
-        });
-    };
+    this.viewPlace = function(place){
+        var check_myLatLng = {lat:place.location.lat,
+                               lng:place.location.lng};
+        stopAnimation();
+        startAnimation(check_myLatLng);
+        FoursquareData(place);       
+    };  
+     
 };     
-    
+
+  
     
 ko.applyBindings(viewModel);  

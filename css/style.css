@@ -127,6 +127,11 @@ input{
 }
 @media screen and (max-width:600px){
   .description{
-    display: none;
+    
+  }
+  .api-error{
+    left:auto;
+    right: auto;
+    width: 100%;
   }
 }
