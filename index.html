@@ -24,14 +24,16 @@
     <div id="map"></div>
     <!-- ko if: des_name -->  
     <div class="description" >
-        <img data-bind="attr: {src: location_image}"/><br/>
+        <img class="fs-logo" src="img/foursquare_logo.png" alt="Foursquare logo">   
+        <img data-bind="attr: {src: location_image}" alt="Foursquare location image"/><br/>
         <h3 data-bind="text: des_name"></h3>
         <hr>
         <!-- ko if: rating -->  
         <p>Rating: <span data-bind="text: rating"></span></p>
         <!-- /ko -->
-        <h3>Review</h3>
+        <h3>Review:</h3>
         <p data-bind="text: review"></p>
+         
     </div> 
     <!-- /ko -->
     <!-- ko if: apiError -->  

@@ -86,7 +86,7 @@ input{
   top:58px;
   right: 0;
   margin-right: 0;
-  background: #00ff00;
+  background: #00061a;
   color: #fff;
   
   
@@ -96,6 +96,22 @@ input{
 }
 .description span{
   font-weight: bold;
+}
+.fs-logo{
+  width: 320px;
+  height: 60px;
+}
+.close-btn{
+  position: absolute;
+  width: 320px;
+  height: 50px;
+  background: #fff;
+  opacity: 0.5;
+  color: #000;
+  top: 0;
+  text-align: center;
+  padding-top: auto;
+  padding-bottom: auto;
 }
 @media screen and (max-width:900px){
   #map{
