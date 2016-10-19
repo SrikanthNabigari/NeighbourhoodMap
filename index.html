@@ -21,7 +21,7 @@
         </ul> 
                  
     </div>   
-    <div id="map"></div>
+    <div id="map" data-bind="click: closeDesc"></div>
     <!-- ko if: des_name -->  
     <div class="description" >
         <img class="fs-logo" src="img/foursquare_logo.png" alt="Foursquare logo">   
@@ -33,7 +33,7 @@
         <!-- /ko -->
         <h3>Review:</h3>
         <p data-bind="text: review"></p>
-        <button class="close-btn" onclick="closeDescription()">X</button>
+        <button class="close-btn" data-bind="click: closeDesc">X</button>
     </div> 
     <!-- /ko -->
     <!-- ko if: apiError -->  
@@ -43,14 +43,6 @@
     <!-- /ko -->  
     <script src="js/knockout.js"></script>   
     <script src="js/jquery.min.js"></script>
-    <script>
-        $('.option-icon').click(function(){
-            $('.navbar').toggleClass('open');
-        });
-        function closeDescription(){
-            self.des_name(null);
-        }
-    </script>
     <script src="js/model.js"></script>
     <script src="js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" async defer></script>

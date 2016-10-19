@@ -158,6 +158,9 @@ var viewModel = function(){
         startAnimation(check_myLatLng);
         FoursquareData(place);       
     };  
+    this.closeDesc = function(){
+        self.des_name(null);
+    };
      
 };     
 
