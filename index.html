@@ -36,13 +36,14 @@
         <p data-bind="text: review"></p>
         <button class="close-btn" data-bind="click: closeDesc">X</button>
     </div> 
+    </div>
     <!-- /ko -->
     <!-- ko if: apiError -->  
         <div class="api-error">
             <h2 class="error_message" data-bind="text:error_message"></h2>
         </div>
     <!-- /ko -->  
-    </div>
+    
     <script src="js/knockout.js"></script>   
     <script src="js/jquery.min.js"></script>
     <script>

@@ -87,11 +87,10 @@ input{
   color:#0066cc;
 }
 .api-error{
-  position: fixed;
-  top:40%;
-  left:40%;
-  margin: auto;
-  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: 50%;
   height: 100px;
   padding: auto;
   color: red;
