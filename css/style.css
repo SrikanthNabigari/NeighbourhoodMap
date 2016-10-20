@@ -57,6 +57,7 @@ h2{
   margin-right: auto;
   overflow: y auto;
   background: #1c262f;
+  overflow-y: scroll;
 }
 ul{
   margin-left: 2px;
@@ -105,7 +106,8 @@ input{
   margin-right: 0;
   background: #00061a;
   color: #fff;
-  
+  overflow-y: scroll;
+  overflow-x: hidden;
   
 }
 .description h3,p{
@@ -133,6 +135,12 @@ input{
 
 
 @media screen and (max-width:900px){
+  .header{
+    height: 10%;
+  }
+  .main{
+    height: 90%;
+  }
   #map{
     width: 100%;
     left:auto;
@@ -163,6 +171,12 @@ input{
     }
 }
 @media screen and (max-width:600px){
+  .header{
+    height: 12%;
+  }
+  .main{
+    height: 88%;
+  }
   .option-icon{
     margin-top: 18px;
     float: left;
