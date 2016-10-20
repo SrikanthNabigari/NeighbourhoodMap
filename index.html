@@ -36,14 +36,13 @@
         <p data-bind="text: review"></p>
         <button class="close-btn" data-bind="click: closeDesc">X</button>
     </div> 
-    </div>
     <!-- /ko -->
     <!-- ko if: apiError -->  
         <div class="api-error">
             <h2 class="error_message" data-bind="text:error_message"></h2>
         </div>
     <!-- /ko -->  
-    
+    </div>
     <script src="js/knockout.js"></script>   
     <script src="js/jquery.min.js"></script>
     <script>
@@ -53,7 +52,7 @@
     </script>
     <script src="js/model.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" async defer></script>
+    <script src="https://maps.goohhgleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" async defer></script>
     <script>
         
         $('.location_name').click(function(){
