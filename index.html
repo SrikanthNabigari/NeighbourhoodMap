@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hyderabad Tourist Locations</title>
+    <title>Hyderabad Tourist Places</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
 </head>
 <body>
     <div class="header">
-        <a href="#" class="option-icon"><img src="img/reorder-option.svg" class="header_item"></a>
-        <h2 class="header_item">Hyderabad Tourist Locations</h2>
+        <a href="#" class="option-icon header_item"><img src="img/reorder-option.svg"></a>
+        <h2 class="header_title header_item">Hyderabad Tourist Places</h2>
     </div>
-   
+    <div class="main">
     <div class="navbar">
         <input type="text" class="search" data-bind="textInput: query" placeholder="search">
         <ul data-bind="foreach: searchResults">
@@ -41,19 +42,23 @@
             <h2 class="error_message" data-bind="text:error_message"></h2>
         </div>
     <!-- /ko -->  
+    </div>
     <script src="js/knockout.js"></script>   
     <script src="js/jquery.min.js"></script>
+    <script>
+        $('.option-icon').click(function(){
+            $('.navbar').toggleClass('open');
+        });
+    </script>
     <script src="js/model.js"></script>
     <script src="js/main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDilOv-f1eqcBIHK6XQSduNHugzchxNTPQ&libraries=places&callback=initMap" onerror="googleError()" async defer></script>
     <script>
+        
         $('.location_name').click(function(){
             $('.navbar').removeClass('open');
         });
-        $('#map').click(function(){
-            self.des_name(null);
-        });  
-          
+                  
          $('a').click(function(){
             $('a').removeClass('li-active');
             $(this).addClass('li-active');
