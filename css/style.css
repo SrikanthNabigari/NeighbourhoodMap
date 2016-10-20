@@ -12,19 +12,21 @@ html, body {
 }
 .header{
   width:100%;
-  height: 8%; 
+  height: 10%; 
   color: #1c262f;
+  vertical-align: middle;
 }
 .option-icon{
   display: none;
+  vertical-align: middle;
 }
 .option-icon img{
   display: none;
   width: 35px;
   height: 18px;
 }
-h2{
-  margin-top: 5px;
+.header_title{
+  vertical-align: middle;
 }
 .header .header_item{
   display: inline-block;
@@ -34,7 +36,7 @@ h2{
 
 .main{
   width: 100%;
-  height: 92%;
+  height: 90%;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -164,6 +166,7 @@ input{
     transform: translate(0, 0);
   }
   .option-icon {
+    vertical-align: middle;
     display: inline-block;
     }
   .option-icon img{
@@ -178,13 +181,15 @@ input{
     height: 88%;
   }
   .option-icon{
-    margin-top: 18px;
-    float: left;
+    margin-top: 25px;
+  }
+  .option-icon img{
+    vertical-align: middle;
   }
   .header_title{
-    margin-top: 12px;
+    margin-right: 15px;
     float: right;
-    margin-right: 10px;
+    vertical-align: middle;
   }
   .api-error{
     left:auto;
