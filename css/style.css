@@ -197,3 +197,11 @@ input{
     width: 100%;
   }
 }
+@media screen and (max-height:450px){
+  .header{
+    height: 20%;
+  }
+  .main{
+    height: 80%;
+  }
+}
